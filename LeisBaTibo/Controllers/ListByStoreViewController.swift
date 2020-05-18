@@ -48,7 +48,7 @@ class ListByStoreViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        self.tableView.rowHeight = 75.0
+        self.tableView.rowHeight = 60.0
         
         
         
@@ -57,9 +57,11 @@ class ListByStoreViewController: UITableViewController {
         //         if storeItems?[indexPath.row].store == selectedStore {
         
         cell.detailTextLabel?.numberOfLines = 0
+
         
-        cell.textLabel?.text = storeItems?[indexPath.row].itemName ?? "No Categories added yet"
-        cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A")\nPrice $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")"
+        cell.textLabel?.text = "\(storeItems?[indexPath.row].itemName  ?? "No Categories added yet") - $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")/\(String(storeItems![indexPath.row].unitMeasurement) ?? "N/A")"
+        
+        cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A"), at \(storeItems?[indexPath.row].store ?? "N/A")"
         
         
         //Ternary operator ==>

@@ -23,6 +23,18 @@ class ToDoListViewController: UITableViewController {
         
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+         tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     @objc func back(sender: UIBarButtonItem) {
         // Perform your custom actions
         
@@ -46,14 +58,14 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        self.tableView.rowHeight = 100.0
+        self.tableView.rowHeight = 60.0
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath) as! SwipeTableViewCell
         
         cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
+        cell.textLabel?.text = "\(items?[indexPath.row].itemName  ?? "No Categories added yet") -  $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")/ \(String(items![indexPath.row].unitMeasurement) ?? "N/A")"
         
-        cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A")\nPrice $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")\nat \(items?[indexPath.row].store ?? "N/A")"
+        cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A"), at \(items?[indexPath.row].store ?? "N/A")"
         
         //        cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
         

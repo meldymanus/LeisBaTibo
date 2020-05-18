@@ -34,7 +34,6 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     }
 
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
-        print("\(brand.text!)")
         
         let newItem = Data()
         
@@ -47,8 +46,12 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         newItem.quantityForEstimatedPrice = Double(quantityPriceTag.text!)!
         newItem.unitMeasurement = unitMeasurementSelected
         
+        
         self.saveItems(itemArray: newItem)
         
+        dismiss(animated: true) {
+            
+        }
         
     }
     
@@ -56,6 +59,7 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         dismiss(animated: true, completion: nil)
     }
+    
     
     func saveItems(itemArray: Data) {
         do {
