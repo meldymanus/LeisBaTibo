@@ -10,8 +10,8 @@
 		AC7967F5767FF81DDAAF87C2 /* Pods_LeisBaTibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C769E94E78EA005522473C94 /* Pods_LeisBaTibo.framework */; };
 		CA386B3E2471EB6E00D21648 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */; };
 		CA386B402471EBA400D21648 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA386B3F2471EBA400D21648 /* Data.swift */; };
-		CA566F9B2470D82B00CDB03A /* PopOverShoppingItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA566F9A2470D82B00CDB03A /* PopOverShoppingItemForm.swift */; };
 		CA61E28F2469F24400B1BD2A /* ListByStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */; };
+		CA99F59124722E2D00E59B57 /* PopOverForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA99F59024722E2D00E59B57 /* PopOverForm.swift */; };
 		CA9A7BF4246E2D4000B42D42 /* CompletedItemsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7BF3246E2D4000B42D42 /* CompletedItemsData.swift */; };
 		EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4F9239524DB00FB933B /* AppDelegate.swift */; };
 		EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */; };
@@ -24,13 +24,11 @@
 		311BBEB90F6C6FAE31D95B4D /* Pods-LeisBaTibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeisBaTibo.release.xcconfig"; path = "Target Support Files/Pods-LeisBaTibo/Pods-LeisBaTibo.release.xcconfig"; sourceTree = "<group>"; };
 		5987784D68A54741FDA0C0D6 /* Pods-LeisBaTibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeisBaTibo.debug.xcconfig"; path = "Target Support Files/Pods-LeisBaTibo/Pods-LeisBaTibo.debug.xcconfig"; sourceTree = "<group>"; };
 		C769E94E78EA005522473C94 /* Pods_LeisBaTibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeisBaTibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = LeisBaTibo/Controllers/CategoryViewController.swift; sourceTree = "<group>"; };
-		CA386B3F2471EBA400D21648 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Data.swift; path = "LeisBaTibo/Data Model/Data.swift"; sourceTree = "<group>"; };
-		CA566F9A2470D82B00CDB03A /* PopOverShoppingItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverShoppingItemForm.swift; sourceTree = "<group>"; };
+		CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		CA386B3F2471EBA400D21648 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByStoreViewController.swift; sourceTree = "<group>"; };
+		CA99F59024722E2D00E59B57 /* PopOverForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopOverForm.swift; path = LeisBaTibo/Controllers/PopOverForm.swift; sourceTree = SOURCE_ROOT; };
 		CA9A7BF3246E2D4000B42D42 /* CompletedItemsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedItemsData.swift; sourceTree = "<group>"; };
-		CA9B39C32467E2E200385941 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = Todoey/Controllers/CategoryViewController.swift; sourceTree = SOURCE_ROOT; };
-		CA9B39C52467E93B00385941 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Data.swift; path = "Todoey/Data Model/Data.swift"; sourceTree = SOURCE_ROOT; };
 		E014F2C27DDECD1C524557D1 /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
 		EB2BE4F6239524DB00FB933B /* LeisBaTibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeisBaTibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE4F9239524DB00FB933B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +74,7 @@
 		CA30134824567595006AB9FF /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA9B39C52467E93B00385941 /* Data.swift */,
+				CA386B3F2471EBA400D21648 /* Data.swift */,
 				CA9A7BF3246E2D4000B42D42 /* CompletedItemsData.swift */,
 			);
 			path = "Data Model";
@@ -85,10 +83,10 @@
 		CA301349245675A9006AB9FF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CA9B39C32467E2E200385941 /* CategoryViewController.swift */,
+				CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */,
 				EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */,
 				CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */,
-				CA566F9A2470D82B00CDB03A /* PopOverShoppingItemForm.swift */,
+				CA99F59024722E2D00E59B57 /* PopOverForm.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -104,8 +102,6 @@
 		EB2BE4ED239524DB00FB933B = {
 			isa = PBXGroup;
 			children = (
-				CA386B3F2471EBA400D21648 /* Data.swift */,
-				CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */,
 				EB2BE4F8239524DB00FB933B /* LeisBatibo */,
 				EB2BE4F7239524DB00FB933B /* Products */,
 				99C1236708C1CBEDEFD8C538 /* Pods */,
@@ -253,9 +249,9 @@
 				CA386B402471EBA400D21648 /* Data.swift in Sources */,
 				CA386B3E2471EB6E00D21648 /* CategoryViewController.swift in Sources */,
 				CA9A7BF4246E2D4000B42D42 /* CompletedItemsData.swift in Sources */,
-				CA566F9B2470D82B00CDB03A /* PopOverShoppingItemForm.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
+				CA99F59124722E2D00E59B57 /* PopOverForm.swift in Sources */,
 				CA61E28F2469F24400B1BD2A /* ListByStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

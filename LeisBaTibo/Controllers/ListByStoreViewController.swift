@@ -59,7 +59,7 @@ class ListByStoreViewController: UITableViewController {
         cell.detailTextLabel?.numberOfLines = 0
         
         cell.textLabel?.text = storeItems?[indexPath.row].itemName ?? "No Categories added yet"
-        cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A")\nPrice $\(String(storeItems![indexPath.row].regularPrice) ?? "N/A")"
+        cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A")\nPrice $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")"
         
         
         //Ternary operator ==>
@@ -88,7 +88,7 @@ class ListByStoreViewController: UITableViewController {
             var textFieldStore = UITextField()
             var textFieldItemName = UITextField()
             var textFieldBrand = UITextField()
-            var textFieldRegularPrice = UITextField()
+            var textFieldestimatedPrice = UITextField()
             var textFieldSalePrice = UITextField()
             var textFieldSaleNote = UITextField()
             
@@ -106,8 +106,8 @@ class ListByStoreViewController: UITableViewController {
                             if textFieldItemNameSafe != "" {
                                 if let textFieldBrandSafe = textFieldBrand.text {
                                     if textFieldBrandSafe != "" {
-                                        if let textFieldRegularPriceSafe = textFieldRegularPrice.text {
-                                            if textFieldRegularPriceSafe != "" {
+                                        if let textFieldestimatedPriceSafe = textFieldestimatedPrice.text {
+                                            if textFieldestimatedPriceSafe != "" {
                                                 if let textFieldSalePriceSafe = textFieldSalePrice.text {
                                                     if textFieldSalePriceSafe != "" {
                                                         if let textFieldSaleNoteSafe = textFieldSaleNote.text {
@@ -120,7 +120,7 @@ class ListByStoreViewController: UITableViewController {
                                                                             item.store = textFieldStore.text!
                                                                             item.itemName = textFieldItemName.text!
                                                                             item.brand = textFieldBrand.text!
-                                                                            item.regularPrice = Float(textFieldRegularPrice.text!)!
+                                                                            item.estimatedPrice = Float(textFieldestimatedPrice.text!)!
                                                                             item.salePrice = Float(textFieldSalePrice.text!)!
                                                                             item.note = textFieldSaleNote.text!
                                                                         }
@@ -163,8 +163,8 @@ class ListByStoreViewController: UITableViewController {
             }
             
             alert.addTextField { (alertTextField) in
-                alertTextField.insertText(String(item.regularPrice))
-                textFieldRegularPrice = alertTextField
+                alertTextField.insertText(String(item.estimatedPrice))
+                textFieldestimatedPrice = alertTextField
             }
             
             alert.addTextField { (alertTextField) in

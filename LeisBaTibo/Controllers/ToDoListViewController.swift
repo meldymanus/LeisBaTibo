@@ -53,7 +53,7 @@ class ToDoListViewController: UITableViewController {
         cell.detailTextLabel?.numberOfLines = 0
         cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
         
-        cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A")\nPrice $\(String(items![indexPath.row].regularPrice) ?? "N/A")\nat \(items?[indexPath.row].store ?? "N/A")"
+        cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A")\nPrice $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")\nat \(items?[indexPath.row].store ?? "N/A")"
         
         //        cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
         
@@ -84,7 +84,7 @@ class ToDoListViewController: UITableViewController {
             var textFieldStore = UITextField()
             var textFieldItemName = UITextField()
             var textFieldBrand = UITextField()
-            var textFieldRegularPrice = UITextField()
+            var textFieldestimatedPrice = UITextField()
             var textFieldSalePrice = UITextField()
             var textFieldSaleNote = UITextField()
             
@@ -102,8 +102,8 @@ class ToDoListViewController: UITableViewController {
                             if textFieldItemNameSafe != "" {
                                 if let textFieldBrandSafe = textFieldBrand.text {
                                     if textFieldBrandSafe != "" {
-                                        if let textFieldRegularPriceSafe = textFieldRegularPrice.text {
-                                            if textFieldRegularPriceSafe != "" {
+                                        if let textFieldestimatedPriceSafe = textFieldestimatedPrice.text {
+                                            if textFieldestimatedPriceSafe != "" {
                                                 if let textFieldSalePriceSafe = textFieldSalePrice.text {
                                                     if textFieldSalePriceSafe != "" {
                                                         if let textFieldSaleNoteSafe = textFieldSaleNote.text {
@@ -116,7 +116,7 @@ class ToDoListViewController: UITableViewController {
                                                                             item.store = textFieldStore.text!
                                                                             item.itemName = textFieldItemName.text!
                                                                             item.brand = textFieldBrand.text!
-                                                                            item.regularPrice = Float(textFieldRegularPrice.text!)!
+                                                                            item.estimatedPrice = Float(textFieldestimatedPrice.text!)!
                                                                             item.salePrice = Float(textFieldSalePrice.text!)!
                                                                             item.note = textFieldSaleNote.text!
                                                                         }
@@ -159,8 +159,8 @@ class ToDoListViewController: UITableViewController {
             }
             
             alert.addTextField { (alertTextField) in
-                alertTextField.insertText(String(item.regularPrice))
-                textFieldRegularPrice = alertTextField
+                alertTextField.insertText(String(item.estimatedPrice))
+                textFieldestimatedPrice = alertTextField
             }
             
             alert.addTextField { (alertTextField) in
@@ -191,7 +191,7 @@ class ToDoListViewController: UITableViewController {
         var textFieldStore = UITextField()
         var textFieldItemName = UITextField()
         var textFieldBrand = UITextField()
-        var textFieldRegularPrice = UITextField()
+        var textFieldestimatedPrice = UITextField()
         var textFieldSalePrice = UITextField()
         var textFieldSaleNote = UITextField()
         
@@ -213,8 +213,8 @@ class ToDoListViewController: UITableViewController {
                         if textFieldItemNameSafe != "" {
                             if let textFieldBrandSafe = textFieldBrand.text {
                                 if textFieldBrandSafe != "" {
-                                    if let textFieldRegularPriceSafe = textFieldRegularPrice.text {
-                                        if textFieldRegularPriceSafe != "" {
+                                    if let textFieldestimatedPriceSafe = textFieldestimatedPrice.text {
+                                        if textFieldestimatedPriceSafe != "" {
                                             if let textFieldSalePriceSafe = textFieldSalePrice.text {
                                                 if textFieldSalePriceSafe != "" {
                                                     if let textFieldSaleNoteSafe = textFieldSaleNote.text {
@@ -225,7 +225,7 @@ class ToDoListViewController: UITableViewController {
                                                             newItem.store = textFieldStore.text!
                                                             newItem.itemName = textFieldItemName.text!
                                                             newItem.brand = textFieldBrand.text!
-                                                            newItem.regularPrice = Float(textFieldRegularPrice.text!)!
+                                                            newItem.estimatedPrice = Float(textFieldestimatedPrice.text!)!
                                                             newItem.salePrice = Float(textFieldSalePrice.text!)!
                                                             newItem.note = textFieldSaleNote.text!
                                                             
@@ -236,7 +236,7 @@ class ToDoListViewController: UITableViewController {
 //                                                            newItemToCompletedTable.store = textFieldStore.text!
 //                                                            newItemToCompletedTable.itemName = textFieldItemName.text!
 //                                                            newItemToCompletedTable.brand = textFieldBrand.text!
-//                                                            newItemToCompletedTable.regularPrice = Float(textFieldRegularPrice.text!)!
+//                                                            newItemToCompletedTable.estimatedPrice = Float(textFieldestimatedPrice.text!)!
 //                                                            newItemToCompletedTable.salePrice = Float(textFieldSalePrice.text!)!
 //                                                            newItemToCompletedTable.note = textFieldSaleNote.text!
 //
@@ -278,7 +278,7 @@ class ToDoListViewController: UITableViewController {
         
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "<Enter Price Before Diskon>"
-            textFieldRegularPrice = alertTextField
+            textFieldestimatedPrice = alertTextField
         }
         
         alert.addTextField { (alertTextField) in
