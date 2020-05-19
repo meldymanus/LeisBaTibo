@@ -4,7 +4,7 @@ import RealmSwift
 import SwipeCellKit
 
 class ToDoListViewController: UITableViewController {
-    
+
     
     let realm = try! Realm()
     
@@ -13,6 +13,8 @@ class ToDoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ToDoListViewController.back(sender:)))
@@ -62,10 +64,30 @@ class ToDoListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath) as! SwipeTableViewCell
         
+        
+        
         cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(items?[indexPath.row].itemName  ?? "No Categories added yet") -  $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")/ \(String(items![indexPath.row].unitMeasurement) ?? "N/A")"
+        cell.textLabel?.text = "\(items?[indexPath.row].itemName  ?? "No Categories added yet") -  $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")/ \(String(items![indexPath.row].quantityForEstimatedPrice) ?? "N/A")\(String(items![indexPath.row].unitMeasurement) ?? "N/A")"
         
         cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A"), at \(items?[indexPath.row].store ?? "N/A")"
+        
+        
+        let label = UILabel.init(frame: CGRect(x:0,y:0,width:150,height:20))
+        label.textColor = UIColor.blue
+        
+        var cost: Double = 0.0
+        cost = items![indexPath.row].buyingQuantity / items![indexPath.row].quantityForEstimatedPrice * items![indexPath.row].estimatedPrice
+
+//        var unitString: Double = 0.0
+//        unitString = items![indexPath.row].unitMeasurement
+        
+//        var costString: String = String(format:"%f", cost!)
+        label.text = "$\(String(cost) ?? "N/A") (\(String(items![indexPath.row].buyingQuantity) ?? "N/A") \(items![indexPath.row].unitMeasurement ?? "N/A"))"
+        
+        cell.accessoryView = label
+        
+
+
         
         //        cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
         
@@ -86,6 +108,8 @@ class ToDoListViewController: UITableViewController {
         
         return cell
     }
+    
+
     
     //MARK: - TableView Delegate Methods: EDIT Item
     
@@ -128,8 +152,8 @@ class ToDoListViewController: UITableViewController {
                                                                             item.store = textFieldStore.text!
                                                                             item.itemName = textFieldItemName.text!
                                                                             item.brand = textFieldBrand.text!
-                                                                            item.estimatedPrice = Float(textFieldestimatedPrice.text!)!
-                                                                            item.salePrice = Float(textFieldSalePrice.text!)!
+                                                                            item.estimatedPrice = Double(textFieldestimatedPrice.text!)!
+                                                                            item.salePrice = Double(textFieldSalePrice.text!)!
                                                                             item.note = textFieldSaleNote.text!
                                                                         }
                                                                     } catch {
@@ -237,8 +261,8 @@ class ToDoListViewController: UITableViewController {
                                                             newItem.store = textFieldStore.text!
                                                             newItem.itemName = textFieldItemName.text!
                                                             newItem.brand = textFieldBrand.text!
-                                                            newItem.estimatedPrice = Float(textFieldestimatedPrice.text!)!
-                                                            newItem.salePrice = Float(textFieldSalePrice.text!)!
+                                                            newItem.estimatedPrice = Double(textFieldestimatedPrice.text!)!
+                                                            newItem.salePrice = Double(textFieldSalePrice.text!)!
                                                             newItem.note = textFieldSaleNote.text!
                                                             
                                                             self.saveItems(itemArray: newItem)

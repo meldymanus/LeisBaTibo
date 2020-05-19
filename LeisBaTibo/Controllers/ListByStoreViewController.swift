@@ -63,6 +63,20 @@ class ListByStoreViewController: UITableViewController {
         
         cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A"), at \(storeItems?[indexPath.row].store ?? "N/A")"
         
+        let label = UILabel.init(frame: CGRect(x:0,y:0,width:150,height:20))
+                label.textColor = UIColor.blue
+                
+                var cost: Double = 0.0
+                cost = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
+
+        //        var unitString: Double = 0.0
+        //        unitString = items![indexPath.row].unitMeasurement
+                
+        //        var costString: String = String(format:"%f", cost!)
+                label.text = "$\(String(cost) ?? "N/A") (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
+                
+                cell.accessoryView = label
+        
         
         //Ternary operator ==>
         //value = condition ? valueIfTrue : valueIfFalse
@@ -122,8 +136,8 @@ class ListByStoreViewController: UITableViewController {
                                                                             item.store = textFieldStore.text!
                                                                             item.itemName = textFieldItemName.text!
                                                                             item.brand = textFieldBrand.text!
-                                                                            item.estimatedPrice = Float(textFieldestimatedPrice.text!)!
-                                                                            item.salePrice = Float(textFieldSalePrice.text!)!
+                                                                            item.estimatedPrice = Double(textFieldestimatedPrice.text!)!
+                                                                            item.salePrice = Double(textFieldSalePrice.text!)!
                                                                             item.note = textFieldSaleNote.text!
                                                                         }
                                                                     } catch {

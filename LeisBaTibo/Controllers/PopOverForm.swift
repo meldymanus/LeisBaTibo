@@ -40,7 +40,7 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         newItem.store = store.text!
         newItem.itemName = itemName.text!
         newItem.brand = brand.text!
-        newItem.estimatedPrice = Float(estimatedPrice.text!)!
+        newItem.estimatedPrice = Double(estimatedPrice.text!)!
         newItem.buyingQuantity = Double(buyingQuantity.text!)!
         newItem.note = note.text!
         newItem.quantityForEstimatedPrice = Double(quantityPriceTag.text!)!
