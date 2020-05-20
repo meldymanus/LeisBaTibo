@@ -59,12 +59,15 @@ class ListByStoreViewController: UITableViewController {
         cell.detailTextLabel?.numberOfLines = 0
 
         
-        cell.textLabel?.text = "\(storeItems?[indexPath.row].itemName  ?? "No Categories added yet") - $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")/\(String(storeItems![indexPath.row].unitMeasurement) ?? "N/A")"
+        cell.textLabel?.text = "\(storeItems?[indexPath.row].itemName  ?? "No Categories added yet") - $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")/\(String(storeItems![indexPath.row].quantityForEstimatedPrice) ?? "N/A")\(String(storeItems![indexPath.row].unitMeasurement) ?? "N/A")"
         
         cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A"), at \(storeItems?[indexPath.row].store ?? "N/A")"
         
-        let label = UILabel.init(frame: CGRect(x:0,y:0,width:150,height:20))
-                label.textColor = UIColor.blue
+        let label1 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:20))
+                label1.textColor = UIColor.blue
+        label1.textAlignment = .right
+        label1.adjustsFontSizeToFitWidth = true
+        label1.font = .boldSystemFont(ofSize: 18)
                 
                 var cost: Double = 0.0
                 cost = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
@@ -73,9 +76,34 @@ class ListByStoreViewController: UITableViewController {
         //        unitString = items![indexPath.row].unitMeasurement
                 
         //        var costString: String = String(format:"%f", cost!)
-                label.text = "$\(String(cost) ?? "N/A") (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
+                label1.text = "$\(String(cost) ?? "N/A")"  // (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
                 
-                cell.accessoryView = label
+//                cell.accessoryView = label1
+        
+        let label2 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:60))
+                label2.textColor = UIColor.blue
+        label2.textAlignment = .right
+        label2.adjustsFontSizeToFitWidth = true
+        label2.font = .boldSystemFont(ofSize: 12)
+                
+//                var cost2: Double = 0.0
+//                cost2 = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
+
+        //        var unitString: Double = 0.0
+        //        unitString = items![indexPath.row].unitMeasurement
+        //        var costString: String = String(format:"%f", cost!)
+                label2.text = "(\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
+                
+//                cell.view = label2
+        
+       
+        
+
+        let container = UIView(frame: CGRect(x:0,y:0,width:75,height:40))
+        container.addSubview(label1)
+        container.addSubview(label2)
+        cell.accessoryView = container
+            
         
         
         //Ternary operator ==>

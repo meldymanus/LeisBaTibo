@@ -10,9 +10,9 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var items: Results<Data>?
     
     let numbers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
-    let unitMeasurement = ["piece","lb","oz","dozen","ct","bunch","kg","gr"]
+    let unitMeasurement = ["ct","lb","oz","dozen","piece","bunch","kg","gr"]
     
-    var unitMeasurementSelected = ""
+    var unitMeasurementSelected = "ct"
     
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var brand: UITextField!
@@ -29,6 +29,7 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
+        
         
 
     }
@@ -88,15 +89,11 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return unitMeasurement[row]
-//    }
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "Times New Roman", size: 18)
+            pickerLabel?.font = UIFont(name: "Times New Roman", size: 15)
             pickerLabel?.textAlignment = .center
         }
         pickerLabel?.text = unitMeasurement[row]
