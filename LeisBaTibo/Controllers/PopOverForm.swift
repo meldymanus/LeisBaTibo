@@ -51,7 +51,7 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         self.saveItems(itemArray: newItem)
         
         dismiss(animated: true) {
-            
+           
         }
         
     }
@@ -101,5 +101,19 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 
         return pickerLabel!
     }
+    
+    //MARK: - Reload Presenting VC
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//
+//        if let firstVC = presentingViewController as? ToDoListViewController {
+//            DispatchQueue.main.async {
+//                firstVC.tableView.reloadData()
+//            }
+//        }
+//    }
+    
+
 
 }
