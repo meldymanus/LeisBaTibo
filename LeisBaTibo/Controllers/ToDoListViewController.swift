@@ -4,7 +4,7 @@ import RealmSwift
 import SwipeCellKit
 
 class ToDoListViewController: UITableViewController {
-
+    
     
     let realm = try! Realm()
     
@@ -27,7 +27,7 @@ class ToDoListViewController: UITableViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
-         tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,55 +64,44 @@ class ToDoListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath) as! SwipeTableViewCell
         
-        
-        
         cell.detailTextLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(items?[indexPath.row].itemName  ?? "No Categories added yet") -  $\(String(items![indexPath.row].estimatedPrice) ?? "N/A")/ \(String(items![indexPath.row].quantityForEstimatedPrice) ?? "N/A")\(String(items![indexPath.row].unitMeasurement) ?? "N/A")"
         
         cell.detailTextLabel?.text = "\(items?[indexPath.row].brand ?? "N/A"), at \(items?[indexPath.row].store ?? "N/A")"
         
+        let label1 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:20))
+        label1.textColor = UIColor.blue
+        label1.textAlignment = .right
+        label1.adjustsFontSizeToFitWidth = true
+        label1.font = .boldSystemFont(ofSize: 18)
         
-               let label1 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:20))
-                        label1.textColor = UIColor.blue
-                label1.textAlignment = .right
-                label1.adjustsFontSizeToFitWidth = true
-                label1.font = .boldSystemFont(ofSize: 18)
-                        
-                        var cost: Double = 0.0
-                        cost = items![indexPath.row].buyingQuantity / items![indexPath.row].quantityForEstimatedPrice * items![indexPath.row].estimatedPrice
-
-                //        var unitString: Double = 0.0
-                //        unitString = items![indexPath.row].unitMeasurement
-                        
-                //        var costString: String = String(format:"%f", cost!)
-                        label1.text = "$\(String(cost) ?? "N/A")"  // (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
-                        
-        //                cell.accessoryView = label1
-                
-                let label2 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:60))
-                        label2.textColor = UIColor.blue
-                label2.textAlignment = .right
-                label2.adjustsFontSizeToFitWidth = true
-                label2.font = .boldSystemFont(ofSize: 12)
-                        
-        //                var cost2: Double = 0.0
-        //                cost2 = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
-
-                //        var unitString: Double = 0.0
-                //        unitString = items![indexPath.row].unitMeasurement
-                //        var costString: String = String(format:"%f", cost!)
-                        label2.text = "(\(String(items![indexPath.row].buyingQuantity) ?? "N/A") \(items![indexPath.row].unitMeasurement ?? "N/A"))"
+        //calculation of cost of item
+        var cost: Double = 0.0
+        cost = items![indexPath.row].buyingQuantity / items![indexPath.row].quantityForEstimatedPrice * items![indexPath.row].estimatedPrice
+        
+        label1.text = "$\(String(cost) ?? "N/A")"
+        
+        //                cell.accessoryView = label
+        
+        let label2 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:60))
+        label2.textColor = UIColor.blue
+        label2.textAlignment = .right
+        label2.adjustsFontSizeToFitWidth = true
+        label2.font = .boldSystemFont(ofSize: 12)
         
 
-
+        label2.text = "(\(String(items![indexPath.row].buyingQuantity) ?? "N/A") \(items![indexPath.row].unitMeasurement ?? "N/A"))"
+        
+        //create container view to hold 2 custom label in prototype cell
+        //label1 for cost of item; label2 for number of item bought and unit (lb/oz/etc)
         let container = UIView(frame: CGRect(x:0,y:0,width:75,height:40))
         container.addSubview(label1)
         container.addSubview(label2)
         cell.accessoryView = container
         
+        cell.delegate = self
         
-        //        cell.textLabel?.text = items?[indexPath.row].itemName ?? "No Categories added yet"
-        
+        return cell
         
         //Ternary operator ==>
         //value = condition ? valueIfTrue : valueIfFalse
@@ -126,12 +115,7 @@ class ToDoListViewController: UITableViewController {
         //            cell.accessoryType = .none
         //        }
         
-        cell.delegate = self
-        
-        return cell
     }
-    
-
     
     //MARK: - TableView Delegate Methods: EDIT Item
     
@@ -143,7 +127,7 @@ class ToDoListViewController: UITableViewController {
             var textFieldItemName = UITextField()
             var textFieldBrand = UITextField()
             var textFieldestimatedPrice = UITextField()
-            var textFieldSalePrice = UITextField()
+            var textFieldBuyQuantity = UITextField()
             var textFieldSaleNote = UITextField()
             
             let alert = UIAlertController(title: "Edit Your Item", message: "", preferredStyle: .alert)
@@ -162,8 +146,8 @@ class ToDoListViewController: UITableViewController {
                                     if textFieldBrandSafe != "" {
                                         if let textFieldestimatedPriceSafe = textFieldestimatedPrice.text {
                                             if textFieldestimatedPriceSafe != "" {
-                                                if let textFieldSalePriceSafe = textFieldSalePrice.text {
-                                                    if textFieldSalePriceSafe != "" {
+                                                if let textFieldBuyQuantitySafe = textFieldBuyQuantity.text {
+                                                    if textFieldBuyQuantitySafe != "" {
                                                         if let textFieldSaleNoteSafe = textFieldSaleNote.text {
                                                             if textFieldSaleNoteSafe != "" {
                                                                 
@@ -175,7 +159,7 @@ class ToDoListViewController: UITableViewController {
                                                                             item.itemName = textFieldItemName.text!
                                                                             item.brand = textFieldBrand.text!
                                                                             item.estimatedPrice = Double(textFieldestimatedPrice.text!)!
-                                                                            item.salePrice = Double(textFieldSalePrice.text!)!
+                                                                            item.buyingQuantity = Double(textFieldBuyQuantity.text!)!
                                                                             item.note = textFieldSaleNote.text!
                                                                         }
                                                                     } catch {
@@ -222,15 +206,15 @@ class ToDoListViewController: UITableViewController {
             }
             
             alert.addTextField { (alertTextField) in
-                alertTextField.insertText(String(item.salePrice))
-                textFieldSalePrice = alertTextField
+                alertTextField.insertText(String(item.buyingQuantity))
+                textFieldBuyQuantity = alertTextField
             }
             
             alert.addTextField { (alertTextField) in
                 alertTextField.insertText(item.note)
                 textFieldSaleNote = alertTextField
             }
-
+            
             alert.addAction(action)
             alert.addAction(cancelAction)
             
@@ -241,8 +225,10 @@ class ToDoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK: - Add New Items
+    //MARK: - UNUSED Func (Add New Items)
     
+    //NOT IN USE CODE
+    //This func has been replaced with a container VC with PopOver segue
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         
@@ -259,8 +245,6 @@ class ToDoListViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            
-            
             
             
             //What will happen once the user clicks the Add item button on our UIAlert
@@ -289,16 +273,16 @@ class ToDoListViewController: UITableViewController {
                                                             
                                                             self.saveItems(itemArray: newItem)
                                                             
-//                                                            let newItemToCompletedTable = CompletedItemsData()
-//
-//                                                            newItemToCompletedTable.store = textFieldStore.text!
-//                                                            newItemToCompletedTable.itemName = textFieldItemName.text!
-//                                                            newItemToCompletedTable.brand = textFieldBrand.text!
-//                                                            newItemToCompletedTable.estimatedPrice = Float(textFieldestimatedPrice.text!)!
-//                                                            newItemToCompletedTable.salePrice = Float(textFieldSalePrice.text!)!
-//                                                            newItemToCompletedTable.note = textFieldSaleNote.text!
-//
-//                                                            self.saveCompletedItems(itemArray: newItemToCompletedTable)
+                                                            //                                                            let newItemToCompletedTable = CompletedItemsData()
+                                                            //
+                                                            //                                                            newItemToCompletedTable.store = textFieldStore.text!
+                                                            //                                                            newItemToCompletedTable.itemName = textFieldItemName.text!
+                                                            //                                                            newItemToCompletedTable.brand = textFieldBrand.text!
+                                                            //                                                            newItemToCompletedTable.estimatedPrice = Float(textFieldestimatedPrice.text!)!
+                                                            //                                                            newItemToCompletedTable.salePrice = Float(textFieldSalePrice.text!)!
+                                                            //                                                            newItemToCompletedTable.note = textFieldSaleNote.text!
+                                                            //
+                                                            //                                                            self.saveCompletedItems(itemArray: newItemToCompletedTable)
                                                             
                                                             
                                                             self.tableView.reloadData()
@@ -356,7 +340,6 @@ class ToDoListViewController: UITableViewController {
         
     }
     
-    // MARK: - Go Back To Previous Screen
     
     func saveItems(itemArray: Data) {
         do {
@@ -368,15 +351,6 @@ class ToDoListViewController: UITableViewController {
         }
     }
     
-    func saveCompletedItems(itemArray: CompletedItemsData) {
-        do {
-            try realm.write {
-                realm.add(itemArray)
-            }
-        } catch {
-            print("Error Saving Completed Item \(error)")
-        }
-    }
     
     
     func loadItems() {
@@ -387,7 +361,7 @@ class ToDoListViewController: UITableViewController {
         
     }
     
-
+    
     
 }
 
@@ -411,8 +385,9 @@ extension ToDoListViewController: SwipeTableViewCellDelegate {
                     print("Error deleting item: \(error)")
                 }
             }
+            tableView.reloadData()
             
-            tableView.reloadData()        }
+        }
         
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")

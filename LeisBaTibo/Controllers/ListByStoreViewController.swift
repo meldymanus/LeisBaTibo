@@ -19,6 +19,7 @@ class ListByStoreViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set up a Back button with word "Back" on Navigation VC
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ToDoListViewController.back(sender:)))
         newBackButton.tintColor = UIColor.white
@@ -30,12 +31,9 @@ class ListByStoreViewController: UITableViewController {
         
     }
     
+    //This func to perform going back to previous VC when tapping Back button set programmaticaly
     @objc func back(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        
-        // Go back to the previous ViewController
         _ = navigationController?.popViewController(animated: true)
-        
     }
     
     
@@ -50,15 +48,13 @@ class ListByStoreViewController: UITableViewController {
         
         self.tableView.rowHeight = 60.0
         
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListByStoreCell", for: indexPath) as! SwipeTableViewCell
         
         //         if storeItems?[indexPath.row].store == selectedStore {
         
         cell.detailTextLabel?.numberOfLines = 0
 
-        
+
         cell.textLabel?.text = "\(storeItems?[indexPath.row].itemName  ?? "No Categories added yet") - $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")/\(String(storeItems![indexPath.row].quantityForEstimatedPrice) ?? "N/A")\(String(storeItems![indexPath.row].unitMeasurement) ?? "N/A")"
         
         cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A"), at \(storeItems?[indexPath.row].store ?? "N/A")"
@@ -230,16 +226,48 @@ class ListByStoreViewController: UITableViewController {
         }
     }
     
+    
     func loadItems() {
         
         storeItems = realm.objects(Data.self)
         storeItems = storeItems?.filter("store CONTAINS %@", selectedStore!).sorted(byKeyPath: "itemName", ascending: true)
         tableView.reloadData()
     }
-    
-    @IBAction func completeShoppingButtonPressed(_ sender: UIButton) {
 
+    
+    @IBAction func completedButtonPressed(_ sender: UIButton) {
         
+        if let n = storeItems?.count  {
+            
+            //            print(n)
+            
+            for item in 0...n-1 {
+                
+//                                print("this count: \(item*0)")
+                if let itemToDelete = storeItems?[item*0] {
+                    do {
+                        try self.realm.write {
+                            self.realm.delete(itemToDelete)
+                        }
+                    } catch {
+                        print("Error deleting item: \(error)")
+                    }
+                }
+                tableView.reloadData()
+            }
+        }
+        
+    }
+    
+    
+    func saveCompletedItems(itemArray: CompletedItemsData) {
+        do {
+            try realm.write {
+                realm.add(itemArray)
+            }
+        } catch {
+            print("Error Saving Completed Item \(error)")
+        }
     }
     
 }

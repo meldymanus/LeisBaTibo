@@ -25,10 +25,15 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     @IBOutlet weak var buyingQuantity: UITextField!
     
+    
+    @IBOutlet weak var buyingUnit: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
+        
+        buyingUnit.text = "ct"
         
         
 
@@ -85,6 +90,9 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         unitMeasurementSelected = unitMeasurement[row]
+        
+        buyingUnit.text = unitMeasurement[row]
+        
         print(unitMeasurement[row])
 
     }
