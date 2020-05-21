@@ -9,6 +9,8 @@ class ListByStoreViewController: UITableViewController {
     
     var storeItems: Results<Data>?
     
+    var completedStoreItems: Results<CompletedItemsData>?
+    
     var selectedStore: String?
     //    {
     //            didSet {
@@ -53,53 +55,53 @@ class ListByStoreViewController: UITableViewController {
         //         if storeItems?[indexPath.row].store == selectedStore {
         
         cell.detailTextLabel?.numberOfLines = 0
-
-
+        
+        
         cell.textLabel?.text = "\(storeItems?[indexPath.row].itemName  ?? "No Categories added yet") - $\(String(storeItems![indexPath.row].estimatedPrice) ?? "N/A")/\(String(storeItems![indexPath.row].quantityForEstimatedPrice) ?? "N/A")\(String(storeItems![indexPath.row].unitMeasurement) ?? "N/A")"
         
         cell.detailTextLabel?.text = "\(storeItems?[indexPath.row].brand ?? "N/A"), at \(storeItems?[indexPath.row].store ?? "N/A")"
         
         let label1 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:20))
-                label1.textColor = UIColor.blue
+        label1.textColor = UIColor.blue
         label1.textAlignment = .right
         label1.adjustsFontSizeToFitWidth = true
         label1.font = .boldSystemFont(ofSize: 18)
-                
-                var cost: Double = 0.0
-                cost = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
-
+        
+        var cost: Double = 0.0
+        cost = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
+        
         //        var unitString: Double = 0.0
         //        unitString = items![indexPath.row].unitMeasurement
-                
+        
         //        var costString: String = String(format:"%f", cost!)
-                label1.text = "$\(String(cost) ?? "N/A")"  // (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
-                
-//                cell.accessoryView = label1
+        label1.text = "$\(String(cost) ?? "N/A")"  // (\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
+        
+        //                cell.accessoryView = label1
         
         let label2 = UILabel.init(frame: CGRect(x:0,y:0,width:75,height:60))
-                label2.textColor = UIColor.blue
+        label2.textColor = UIColor.blue
         label2.textAlignment = .right
         label2.adjustsFontSizeToFitWidth = true
         label2.font = .boldSystemFont(ofSize: 12)
-                
-//                var cost2: Double = 0.0
-//                cost2 = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
-
+        
+        //                var cost2: Double = 0.0
+        //                cost2 = storeItems![indexPath.row].buyingQuantity / storeItems![indexPath.row].quantityForEstimatedPrice * storeItems![indexPath.row].estimatedPrice
+        
         //        var unitString: Double = 0.0
         //        unitString = items![indexPath.row].unitMeasurement
         //        var costString: String = String(format:"%f", cost!)
-                label2.text = "(\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
-                
-//                cell.view = label2
+        label2.text = "(\(String(storeItems![indexPath.row].buyingQuantity) ?? "N/A") \(storeItems![indexPath.row].unitMeasurement ?? "N/A"))"
         
-       
+        //                cell.view = label2
         
-
+        
+        
+        
         let container = UIView(frame: CGRect(x:0,y:0,width:75,height:40))
         container.addSubview(label1)
         container.addSubview(label2)
         cell.accessoryView = container
-            
+        
         
         
         //Ternary operator ==>
@@ -233,18 +235,30 @@ class ListByStoreViewController: UITableViewController {
         storeItems = storeItems?.filter("store CONTAINS %@", selectedStore!).sorted(byKeyPath: "itemName", ascending: true)
         tableView.reloadData()
     }
-
+    
     
     @IBAction func completedButtonPressed(_ sender: UIButton) {
         
         if let n = storeItems?.count  {
             
-            //            print(n)
-            
             for item in 0...n-1 {
                 
-//                                print("this count: \(item*0)")
                 if let itemToDelete = storeItems?[item*0] {
+                    
+                    
+                    let movedItem = CompletedItemsData()
+                    
+                    movedItem.itemName = itemToDelete.itemName
+                    movedItem.brand = itemToDelete.brand
+                    movedItem.store = itemToDelete.store
+                    movedItem.buyingQuantity = itemToDelete.buyingQuantity
+                    movedItem.estimatedPrice = itemToDelete.estimatedPrice
+                    movedItem.unitMeasurement = itemToDelete.unitMeasurement
+                    movedItem.quantityForEstimatedPrice = itemToDelete.quantityForEstimatedPrice
+                    movedItem.note = itemToDelete.note
+                    
+                    self.saveCompletedItems(itemArray: movedItem)
+                    
                     do {
                         try self.realm.write {
                             self.realm.delete(itemToDelete)
@@ -252,12 +266,13 @@ class ListByStoreViewController: UITableViewController {
                     } catch {
                         print("Error deleting item: \(error)")
                     }
+                    
                 }
                 tableView.reloadData()
             }
         }
-        
     }
+        
     
     
     func saveCompletedItems(itemArray: CompletedItemsData) {
@@ -269,8 +284,8 @@ class ListByStoreViewController: UITableViewController {
             print("Error Saving Completed Item \(error)")
         }
     }
-    
 }
+
 
 //MARK: - Swipe Cell Delegate Method
 

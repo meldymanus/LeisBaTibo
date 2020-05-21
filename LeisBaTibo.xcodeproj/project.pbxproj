@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC7967F5767FF81DDAAF87C2 /* Pods_LeisBaTibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C769E94E78EA005522473C94 /* Pods_LeisBaTibo.framework */; };
+		CA070D9A247651F10053A592 /* CompletedShoppingItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA070D99247651F10053A592 /* CompletedShoppingItems.swift */; };
 		CA386B3E2471EB6E00D21648 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */; };
 		CA386B402471EBA400D21648 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA386B3F2471EBA400D21648 /* Data.swift */; };
 		CA61E28F2469F24400B1BD2A /* ListByStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */; };
@@ -24,6 +25,7 @@
 		311BBEB90F6C6FAE31D95B4D /* Pods-LeisBaTibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeisBaTibo.release.xcconfig"; path = "Target Support Files/Pods-LeisBaTibo/Pods-LeisBaTibo.release.xcconfig"; sourceTree = "<group>"; };
 		5987784D68A54741FDA0C0D6 /* Pods-LeisBaTibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeisBaTibo.debug.xcconfig"; path = "Target Support Files/Pods-LeisBaTibo/Pods-LeisBaTibo.debug.xcconfig"; sourceTree = "<group>"; };
 		C769E94E78EA005522473C94 /* Pods_LeisBaTibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeisBaTibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA070D99247651F10053A592 /* CompletedShoppingItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompletedShoppingItems.swift; path = LeisBaTibo/Controllers/CompletedShoppingItems.swift; sourceTree = SOURCE_ROOT; };
 		CA386B3D2471EB6E00D21648 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		CA386B3F2471EBA400D21648 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByStoreViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */,
 				CA61E28E2469F24400B1BD2A /* ListByStoreViewController.swift */,
 				CA99F59024722E2D00E59B57 /* PopOverForm.swift */,
+				CA070D99247651F10053A592 /* CompletedShoppingItems.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
 				CA99F59124722E2D00E59B57 /* PopOverForm.swift in Sources */,
+				CA070D9A247651F10053A592 /* CompletedShoppingItems.swift in Sources */,
 				CA61E28F2469F24400B1BD2A /* ListByStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
