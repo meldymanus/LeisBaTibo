@@ -5,6 +5,7 @@ import RealmSwift
 
 class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
     let realm = try! Realm()
     
     var items: Results<Data>?
@@ -55,16 +56,23 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         self.saveItems(itemArray: newItem)
         
+//        performSegue(withIdentifier: "BackToItemsList", sender: self)
+        
         dismiss(animated: true) {
-           
+            
         }
         
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         
+ 
         dismiss(animated: true, completion: nil)
+        
     }
+    
+
+
     
     
     func saveItems(itemArray: Data) {
@@ -110,6 +118,12 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         return pickerLabel!
     }
     
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as! ToDoListViewController
+//        destinationVC.backFromPopOver
+//    }
+    
     //MARK: - Reload Presenting VC
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -125,3 +139,5 @@ class PopOverForm: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 
 
 }
+
+

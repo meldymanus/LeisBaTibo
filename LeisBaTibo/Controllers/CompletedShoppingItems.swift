@@ -20,6 +20,11 @@ class CompletedShoppingItems: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set up a Back button with word "Back" on Navigation VC
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ToDoListViewController.back(sender:)))
+        newBackButton.tintColor = UIColor.white
+        self.navigationItem.leftBarButtonItem = newBackButton
         
         
         loadItems()
@@ -27,9 +32,11 @@ class CompletedShoppingItems: UITableViewController {
     }
     
     
-
+    //This func to perform going back to previous VC when tapping Back button set programmaticaly
+    @objc func back(sender: UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
     
-
     
     //MARK: - TableView Datasource Method
     

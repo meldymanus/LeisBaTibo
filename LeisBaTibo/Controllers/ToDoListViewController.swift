@@ -5,6 +5,7 @@ import SwipeCellKit
 
 class ToDoListViewController: UITableViewController {
     
+
     
     let realm = try! Realm()
     
@@ -26,15 +27,12 @@ class ToDoListViewController: UITableViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
-        super.viewWillAppear(animated)
+        super.viewWillAppear(true)
         
-        tableView.reloadData()
+        loadItems()
+        
     }
     
     @objc func back(sender: UIBarButtonItem) {
@@ -360,6 +358,8 @@ class ToDoListViewController: UITableViewController {
         tableView.reloadData()
         
     }
+    
+
     
     
     
